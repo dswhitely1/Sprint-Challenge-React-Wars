@@ -8,6 +8,7 @@ class App extends Component {
     this.state = {
       starwarsChars : [],
       starwarsMovies: [],
+      toggleMovies  : false,
     };
   }
 
@@ -15,6 +16,8 @@ class App extends Component {
     this.getCharacters('https://swapi.co/api/people/');
     this.getMovies(`https://swapi.co/api/films/`);
   }
+
+  onHandleToggle = () => this.setState({toggleMovies: !this.state.toggleMovies})
 
   getCharacters = URL => {
     // feel free to research what this code is doing.

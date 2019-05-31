@@ -1,11 +1,24 @@
-import React from 'react';
-import MovieDetails from './MovieDetails'
+import React        from 'react';
+import styled       from 'styled-components';
+import MovieDetails from './MovieDetails';
+
+const ListItem = styled.li`
+  font-size: 2rem;
+  color: #ffd700; 
+  line-spacing: 1.25; 
+`;
+
+const UnOrderList = styled.ul`
+  list-style: circle inside;
+`;
 const MovieName = props => {
+  const { movie } = props;
   return (
     <div>
-    <li>{ props.movie.title }</li>
-      <ul><MovieDetails movie={props} /></ul>
+      <ListItem>{ movie.title }</ListItem>
+      <UnOrderList><MovieDetails movie={ props }/></UnOrderList>
     </div>
-  );};
+  );
+};
 
 export default MovieName;

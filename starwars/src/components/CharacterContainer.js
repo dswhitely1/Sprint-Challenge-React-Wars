@@ -13,9 +13,10 @@ const Wrapper = styled.div`
 `;
 
 const CharacterContainer = props => {
+  const { characters, movies } = props;
   return (
     <Wrapper>
-      { props.characters.map((character, i) => <CharacterCard character={ character } key={ i } movies={props.movies}/>) }
+      { characters.map((character, i) => <CharacterCard character={ character } key={ i } movies={ movies }/>) }
     </Wrapper>
   );
 };

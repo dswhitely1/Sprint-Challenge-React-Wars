@@ -1,14 +1,22 @@
-import React     from 'react';
+import React  from 'react';
+import styled from 'styled-components';
+
 import MovieName from './MovieName';
 
-const MovieContainer = props => {
-  const renderMovieList = props.movies.filter(movie => props.movieList.includes(movie.url));
+const OrderList = styled.ol`
+  list-style-type: upper-roman;
+  list-style-position: inside;  
+`;
 
-    return (
-      <ol>
-        {renderMovieList.map(movie => <MovieName movie={movie}/>)}
-      </ol>
-    )
+const MovieContainer = props => {
+  const { movies, movieList } = props;
+  const renderMovieList = movies.filter(movie => movieList.includes(movie.url));
+
+  return (
+    <OrderList>
+      { renderMovieList.map(movie => <MovieName movie={ movie }/>) }
+    </OrderList>
+  );
 
 };
 
