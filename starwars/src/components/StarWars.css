@@ -1,0 +1,8 @@
+a:hover {
+    background-color: #222222;
+    color: #ffd700;
+}
+
+.character-card:hover {
+    box-shadow: 1px 1px 25px 5px #ffd700;
+}
