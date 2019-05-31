@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled               from 'styled-components';
 
 import './App.css';
 import CharacterContainer   from './components/CharacterContainer';
+import Pagination           from './components/Pagination';
 
 const Button = styled.div`
+  margin: 1rem;
   font-size: 2rem;
   padding: 10px 20px;
   color: #222222;
@@ -13,8 +15,7 @@ const Button = styled.div`
   margin: 0 auto;
   border-radius: 1rem;
   cursor: pointer;
-`
-
+`;
 
 class App extends Component {
   constructor () {
@@ -23,6 +24,8 @@ class App extends Component {
       starwarsChars : [],
       starwarsMovies: [],
       toggleMovies  : false,
+      nextCharPage  : '',
+      prevCharPage  : '',
     };
   }
 
@@ -31,7 +34,7 @@ class App extends Component {
     this.getMovies(`https://swapi.co/api/films/`);
   }
 
-  onHandleToggle = () => this.setState({toggleMovies: !this.state.toggleMovies})
+  onHandleToggle = () => this.setState({ toggleMovies: !this.state.toggleMovies });
 
   getCharacters = URL => {
     // feel free to research what this code is doing.
@@ -42,7 +45,7 @@ class App extends Component {
         return res.json();
       })
       .then(data => {
-        this.setState({ starwarsChars: data.results });
+        this.setState({ starwarsChars: data.results, nextCharPage: data.next, prevCharPage: data.previous });
       })
       .catch(err => {
         throw new Error(err);
@@ -63,14 +66,18 @@ class App extends Component {
   };
 
   render () {
+    console.table(this.state.starwarsChars);
 
     return (
       <div className="App">
         <h1 className="Header">React Wars</h1>
-        <Button className={'button'} onClick={this.onHandleToggle}>
-          Movies {this.state.toggleMovies ? `On` : `Off`}
+        <Button className={ 'button' } onClick={ this.onHandleToggle }>
+          Movies { this.state.toggleMovies ? `On` : `Off` }
         </Button>
-        <CharacterContainer characters={ this.state.starwarsChars } movies={ this.state.starwarsMovies } showMovies={this.state.toggleMovies}/>
+        <CharacterContainer characters={ this.state.starwarsChars } movies={ this.state.starwarsMovies }
+                            showMovies={ this.state.toggleMovies }/>
+        <Pagination nextPage={ this.state.nextCharPage } prevPage={ this.state.prevCharPage }
+                    getCharacters={ this.getCharacters }/>
       </div>
     );
   }

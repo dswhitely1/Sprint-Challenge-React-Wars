@@ -16,7 +16,8 @@ const CharacterContainer = props => {
   const { characters, movies, showMovies } = props;
   return (
     <Wrapper>
-      { characters.map((character, i) => <CharacterCard character={ character } key={ i } movies={ movies } showMovies={showMovies}/>) }
+      { characters.map((character, i) => <CharacterCard character={ character } key={ i } movies={ movies }
+                                                        showMovies={ showMovies }/>) }
     </Wrapper>
   );
 };
