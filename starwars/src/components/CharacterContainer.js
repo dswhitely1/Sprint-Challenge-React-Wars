@@ -1,7 +1,7 @@
 import React         from 'react';
-import styled from 'styled-components';
+import styled        from 'styled-components';
 
-import './StarWars.css'
+import './StarWars.css';
 import CharacterCard from './CharacterCard';
 
 const Wrapper = styled.div`
@@ -12,12 +12,12 @@ const Wrapper = styled.div`
   flex-flow: row wrap;
 `;
 
-
 const CharacterContainer = props => {
   return (
     <Wrapper>
-    {props.characters.map((character,i) => <CharacterCard character={ character } key={i}/>)}
+      { props.characters.map((character, i) => <CharacterCard character={ character } key={ i } movies={props.movies}/>) }
     </Wrapper>
-  )} ;
+  );
+};
 
 export default CharacterContainer;

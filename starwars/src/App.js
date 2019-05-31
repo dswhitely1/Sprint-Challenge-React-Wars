@@ -3,15 +3,17 @@ import './App.css';
 import CharacterContainer   from './components/CharacterContainer';
 
 class App extends Component {
-  constructor() {
+  constructor () {
     super();
     this.state = {
-      starwarsChars: []
+      starwarsChars : [],
+      starwarsMovies: [],
     };
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.getCharacters('https://swapi.co/api/people/');
+    this.getMovies(`https://swapi.co/api/films/`);
   }
 
   getCharacters = URL => {
@@ -30,11 +32,25 @@ class App extends Component {
       });
   };
 
-  render() {
+  getMovies = URL => {
+    fetch(URL)
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        this.setState({ starwarsMovies: data.results });
+      })
+      .catch(err => {
+        throw new Error(err);
+      });
+  };
+
+  render () {
+
     return (
       <div className="App">
         <h1 className="Header">React Wars</h1>
-        <CharacterContainer characters={this.state.starwarsChars}/>
+        <CharacterContainer characters={ this.state.starwarsChars } movies={ this.state.starwarsMovies }/>
       </div>
     );
   }
