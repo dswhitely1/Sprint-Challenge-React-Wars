@@ -1,6 +1,20 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
+
 import './App.css';
 import CharacterContainer   from './components/CharacterContainer';
+
+const Button = styled.div`
+  font-size: 2rem;
+  padding: 10px 20px;
+  color: #222222;
+  background-color: #ffd700;
+  width: 13%;
+  margin: 0 auto;
+  border-radius: 1rem;
+  cursor: pointer;
+`
+
 
 class App extends Component {
   constructor () {
@@ -53,7 +67,10 @@ class App extends Component {
     return (
       <div className="App">
         <h1 className="Header">React Wars</h1>
-        <CharacterContainer characters={ this.state.starwarsChars } movies={ this.state.starwarsMovies }/>
+        <Button className={'button'} onClick={this.onHandleToggle}>
+          Movies {this.state.toggleMovies ? `On` : `Off`}
+        </Button>
+        <CharacterContainer characters={ this.state.starwarsChars } movies={ this.state.starwarsMovies } showMovies={this.state.toggleMovies}/>
       </div>
     );
   }

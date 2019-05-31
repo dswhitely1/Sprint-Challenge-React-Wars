@@ -13,3 +13,8 @@
 h1 {
     font-size: 4.8rem;
 }
+
+.button:hover {
+    color: #ffd700;
+    background-color: #222222;
+}

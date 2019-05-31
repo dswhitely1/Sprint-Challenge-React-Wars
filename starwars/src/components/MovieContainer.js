@@ -14,7 +14,7 @@ const MovieContainer = props => {
 
   return (
     <OrderList>
-      { renderMovieList.map(movie => <MovieName movie={ movie }/>) }
+      { renderMovieList.map((movie, i) => <MovieName movie={ movie } key={ i }/>) }
     </OrderList>
   );
 

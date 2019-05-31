@@ -28,9 +28,8 @@ const CardContent = styled.p`
 `;
 
 const CharacterCard = props => {
-  const { character } = props;
+  const { character, movies, showMovies } = props;
   const { name, height, birth_year, films } = character;
-  const { movies } = props;
   return (
     <Card className={ 'character-card' }>
       <CardTitle>
@@ -38,8 +37,8 @@ const CharacterCard = props => {
       </CardTitle>
       <CardContent>{ `Height: ${ height }` }</CardContent>
       <CardContent>{ `Birth Year: ${ birth_year }` }</CardContent>
-      <CardContent>{ `Movies` }</CardContent>
-      <MovieContainer movieList={ films } movies={ movies }/>
+      { showMovies ? <CardContent>{ `Movies` }</CardContent> : null }
+      { showMovies ? <MovieContainer movieList={ films } movies={ movies }/> : null }
     </Card>
   );
 };
