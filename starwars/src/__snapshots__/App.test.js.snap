@@ -1,52 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<App /> should match snapshot 1`] = `
-<div
-  className="ui large inverted pointing menu"
-  top={true}
->
-  <div
-    className="ui container"
-  >
-    <a
-      className="active item"
-      onClick={[Function]}
-    >
-      Digital Solutions by Don
-    </a>
-    <div
-      className="right item"
-      onClick={[Function]}
-    >
-      <div
-        aria-expanded={false}
-        className="ui item dropdown"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onMouseDown={[Function]}
-        role="listbox"
-        tabIndex={0}
-      >
-        <div
-          aria-atomic={true}
-          aria-live="polite"
-          className="text"
-          role="alert"
-        >
-          Characters
-        </div>
-        <i
-          aria-hidden="true"
-          className="dropdown icon"
-          onClick={[Function]}
-        />
-        <div
-          className="menu transition"
-        />
-      </div>
-    </div>
-  </div>
-</div>
+<h3>
+  Loading
+</h3>
 `;

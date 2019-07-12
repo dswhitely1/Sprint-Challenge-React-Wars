@@ -15,6 +15,5 @@ export const romanNum = num => {
       num = num - 1;
     }
   }
-  console.log(str);
   return str;
 };
