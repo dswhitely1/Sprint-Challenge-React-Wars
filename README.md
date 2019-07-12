@@ -24,36 +24,37 @@ In this challenge, create a web page that presents a styled list of Star Wars ch
 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
-- [ ] What is React JS and what problems does it try and solve? Support your answer with concepts introduced in class and from your personal research on the web.
-
-- [ ] What does it mean to _think_ in react?
-
-- [ ] Describe state.
-
-- [ ] Describe props.
-
-- [ ] What are side effects, and how do you sync effects in a React component to state or prop changes?
+- [x] What is React JS and what problems does it try and solve? Support your answer with concepts introduced in class and from your personal research on the web.
+ReactJS is a JavaScript library that takes care of all the DOM manipulation for us so that we can produce a user interface very quickly. ReactJS updates the DOM from it's own Virtual Dom by a process call reconciliation. By doing this automatically, it frees the developer to concentrate on the presentation of the data.
+- [x] What does it mean to _think_ in react?
+You want to take your UI and break it down into a component hierarchy and build components that will house pieces of the UI and then import those components into a parent container.
+- [x] Describe state.
+State is the source of truth when it comes to data in a web application. It is the 'WareHouse' where all things are stored.
+- [x] Describe props.
+Props is the vehicle that delivers the date from the 'WareHouse' to the child components in a react application.
+- [x] What are side effects, and how do you sync effects in a React component to state or prop changes?
+Side Effects are what the Lifecycle methods were on React Classes.  With side effects, you can do what the lifecycle methods used to do, but have greater control over them.  For instance, you can define a _useEffect_ hook and have it listen to a piece of state by supplying it to a dependency array.  That way the effect will only fire when that piece of state is updated.
 
 ## Project Set Up
 
 Follow these steps to set up and work on your project:
 
-- [ ] Create a forked copy of this project.
-- [ ] Add PM as collaborator on Github.
-- [ ] Clone your OWN version of Repo (Not Lambda's by mistake!)
-- [ ] Create a new Branch on the clone: git checkout -b `<firstName-lastName>`.
-- [ ] Change directories into `./starwars` (`cd starwars`) and run `yarn install` or `npm install` to retrieve all needed dependencies.
-- [ ] Once you have installed the _node_modules_, run `yarn start or` to get your server up and running.
-- [ ] With the server up and running, open Chrome and head over to `localhost:3000` and view your beautiful app. Maybe it's not _that_ pretty... _yet_, your goal is to ensure this project becomes a thing of beauty.
+- [x] Create a forked copy of this project.
+- [x] Add PM as collaborator on Github.
+- [x] Clone your OWN version of Repo (Not Lambda's by mistake!)
+- [x] Create a new Branch on the clone: git checkout -b `<firstName-lastName>`.
+- [x] Change directories into `./starwars` (`cd starwars`) and run `yarn install` or `npm install` to retrieve all needed dependencies.
+- [x] Once you have installed the _node_modules_, run `yarn start or` to get your server up and running.
+- [x] With the server up and running, open Chrome and head over to `localhost:3000` and view your beautiful app. Maybe it's not _that_ pretty... _yet_, your goal is to ensure this project becomes a thing of beauty.
 Follow these steps for completing your project.
-- [ ] Implement the project on this Branch, committing changes regularly.
-- [ ] Push commits: git push origin `<firstName-lastName>`.
+- [x] Implement the project on this Branch, committing changes regularly.
+- [x] Push commits: git push origin `<firstName-lastName>`.
 
 Follow these steps for completing your project:
 
-- [ ] Submit a Pull-Request to merge <firstName-lastName> Branch into master (student's  Repo).
-- [ ] Add your Project Manager as a Reviewer on the Pull-request.
-- [ ] PM then will count the HW as done by  merging the branch back into master.
+- [x] Submit a Pull-Request to merge <firstName-lastName> Branch into master (student's  Repo).
+- [x] Add your Project Manager as a Reviewer on the Pull-request.
+- [x] PM then will count the HW as done by  merging the branch back into master.
 
 
 ## Minimum Viable Product
