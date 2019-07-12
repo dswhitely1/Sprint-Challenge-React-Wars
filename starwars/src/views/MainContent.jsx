@@ -5,14 +5,14 @@ import {
 } from 'semantic-ui-react';
 
 import { useAxios } from '../hooks/useAxios';
-
-const kebabCase = str => str.toLowerCase().replace(/\s/, '-');
+import {kebabCase, romanNum} from '../utils/helpers';
 
 const MainContent = ( {characters} ) => {
   const [data, errors, loading] = useAxios( 'https://swapi.co/api/films/' );
   if (loading || data === []) {
     return <h3>Loading</h3>;
   }
+  console.log(data);
   return (
     <Container>
       <Segment.Group>
@@ -28,7 +28,12 @@ const MainContent = ( {characters} ) => {
                 {character.films.map( (film,i) => {
                   const filmId = data && data.data && data.data.results.filter( url => url.url === film )[0];
                   return (
-                    <Segment key={i}>{filmId && `${filmId.title}`}</Segment>
+                    <Segment key={i}>
+                      <>
+                      {filmId && `${filmId.title}   `}
+                        {filmId && <Button color="yellow" as="a" href={`https://www.starwars.com/films/star-wars-episode-${romanNum(filmId.episode_id)}-${kebabCase(filmId.title)}`}>Click Here</Button>}
+                      </>
+                    </Segment>
                   );
                 } )}
               </Segment.Group>
