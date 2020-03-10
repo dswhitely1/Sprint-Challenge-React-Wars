@@ -1,6 +1,6 @@
 # Sprint Challenge: React - Star Wars
 
-This challenge allows you to practice the concepts and techniques learned over the past Sprint and apply them in a concrete project. This Sprint explored ReactJS, Functional Components and Class Components. In your challenge for this Sprint, you will demonstrate proficiency by creating an application that uses ReactJS to consume live data retrieved from the World Wide Web and style that data nicely on the page.
+This challenge allows you to practice the concepts and techniques learned over the past Sprint and apply them in a concrete project. This Sprint explored ReactJS, Function Components, component state and side effects. In your challenge for this Sprint, you will demonstrate proficiency by creating an application that uses ReactJS to consume live data retrieved from the World Wide Web and style that data nicely on the page.
 
 ## Instructions
 
@@ -24,14 +24,16 @@ In this challenge, create a web page that presents a styled list of Star Wars ch
 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
-- [ ] What is React JS and what problems does it try and solve? Support your answer with concepts introduced in class and from your personal research on the web.  ReactJS is a JavaScript library that takes care of all the DOM manipulation for us so that we can produce a user interface very quickly.  ReactJS updates the DOM from it's own Virtual Dom by a process call reconciliation.  By doing this automatically, it frees the developer to concentrate on the presentation of the data.
-
-- [ ] What does it mean to _think_ in react?  You want to take your UI and break it down into a component hierarchy and build components that will house pieces of the UI and then import those components into a parent container. 
-
-- [ ] Describe state.  State is the source of truth when it comes to data in a web application.  It is the 'WareHouse' where all things are stored.
-
-- [ ] Describe props. Props is the vehicle that delivers the date from the 'WareHouse' to the child components in a react application.
-
+- [x] What is React JS and what problems does it try and solve? Support your answer with concepts introduced in class and from your personal research on the web.
+ReactJS is a JavaScript library that takes care of all the DOM manipulation for us so that we can produce a user interface very quickly. ReactJS updates the DOM from it's own Virtual Dom by a process call reconciliation. By doing this automatically, it frees the developer to concentrate on the presentation of the data.
+- [x] What does it mean to _think_ in react?
+You want to take your UI and break it down into a component hierarchy and build components that will house pieces of the UI and then import those components into a parent container.
+- [x] Describe state.
+State is the source of truth when it comes to data in a web application. It is the 'WareHouse' where all things are stored.
+- [x] Describe props.
+Props is the vehicle that delivers the date from the 'WareHouse' to the child components in a react application.
+- [x] What are side effects, and how do you sync effects in a React component to state or prop changes?
+Side Effects are what the Lifecycle methods were on React Classes.  With side effects, you can do what the lifecycle methods used to do, but have greater control over them.  For instance, you can define a _useEffect_ hook and have it listen to a piece of state by supplying it to a dependency array.  That way the effect will only fire when that piece of state is updated.
 
 
 ## Project Set Up
@@ -42,7 +44,7 @@ Follow these steps to set up and work on your project:
 - [x] Add PM as collaborator on Github.
 - [x] Clone your OWN version of Repo (Not Lambda's by mistake!)
 - [x] Create a new Branch on the clone: git checkout -b `<firstName-lastName>`.
-- [x] Change directories into `./starwars` (`cd starwars`) and run `yarn install` to retrieve all needed dependencies.
+- [x] Change directories into `./starwars` (`cd starwars`) and run `yarn install` or `npm install` to retrieve all needed dependencies.
 - [x] Once you have installed the _node_modules_, run `yarn start or` to get your server up and running.
 - [x] With the server up and running, open Chrome and head over to `localhost:3000` and view your beautiful app. Maybe it's not _that_ pretty... _yet_, your goal is to ensure this project becomes a thing of beauty.
 Follow these steps for completing your project.
@@ -55,45 +57,16 @@ Follow these steps for completing your project:
 - [x] Add your Project Manager as a Reviewer on the Pull-request.
 - [x] PM then will count the HW as done by  merging the branch back into master.
 
-Please note:
-
-- In `App.js`'s `componentDidMount()` method we call the public Star Wars API, which stores the result in the component state.
-- Here's an excerpt of that logic:
-
-```js
-componentDidMount() {
-  this.getCharacters('https://swapi.co/api/people');
-}
-
-getCharacters = URL => {
-  fetch(URL)
-    .then(res => {
-      return res.json();
-    })
-    .then(data => {
-      this.setState({ starwarsChars: data.results });
-    })
-    .catch(err => {
-      throw new Error(err);
-    });
-};
-```
-
-- At a high level, this code is a common way to automatically load data from a remote server into a component.
-- View your `App` component's `state` by opening the Chrome `React Dev Tools` to peek at the data set. At this point you will know what to do from here.
-
-Your data set will look like this:
-
-![Star Wars state data](starwars_data.png)
-
-
 ## Minimum Viable Product
 
 Your finished project must include all of the following requirements:
-
-- [x] A list of Star Wars Characters rendered to the screen.
-- [x] You must have at least one list element for each star wars character in the data set.
-- [x] The list elements must all be minimally styled. (Don't rely on browser default styles.)
+- [x] Fetch a list of Star Wars characters from the [Star Wars API (or SWAPI)](https://swapi.co/) and render them to the screen. 
+- [x] Follow the documentation to learn how to fetch a list of "people". However, don't spend _too_ long on this. Here is a link for you to follow if you've looked around the docs for about 15 minutes or so and haven't found where to go - [Secret Link to Awesomeness 🤫](https://swapi.co/documentation#people)
+- [x] Set the data you fetch to state
+- [x] Map over the list and render a component for each character on the page
+- [x] You must have at least one element for each star wars character in the data set
+- [x] The elements must be styled with either SemanticUI or styled-components - don't rely on browser default styles
+- [x] Finally, add at least two snapshot tests
 
 Required best practices:
 
@@ -109,20 +82,8 @@ It is better to submit a challenge that meets [MVP](https://en.wikipedia.org/wik
 ## Stretch Problems
 
 - [ ] Build a pagination system that will allow you to load the next page of data
-
-- Take note on the data that's coming back from the server call in our `getCharacters()`.
-- console.log() the data coming back from the server.
-- Notice that there are `next` `previous` fields that give you a URL.
-- You have a function that will get chars called `getCharacters` you'll want to just call this function and supply it with the proper fields. You'll need to set this up on state to do this.
-
-```js
- .then(data => {
-    console.log(data); <-- Log data here to find the fields you will need.
-    this.setState({ starwarsChars: data.results });
-  })
-```
+  - console.log() the data coming back from the server
+  - Notice that there are `next` and `previous` fields that give you a URL
+  - You can build a function that will get characters called `getCharacters` that you can use dynamically to get the next or previous set of characters. You would need to supply it with the proper fields, and you'll need to set up more state to do this
 
 - [ ] Build another app from scratch that looks very similar to this one. Inside of your main `App` component fetch some data in this same fashion from this url `https://dog.ceo/dog-api/#all` you'll have to follow the documentation at that website and figure out how to change up the code you've seen here in this Star Wars app in order to properly fetch the data and store it on Component State.
-
-- Be mindful of the `fetch API` that is now built into most modern browsers [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
-- Your data coming back from Dogs should be formatted in JSON format.

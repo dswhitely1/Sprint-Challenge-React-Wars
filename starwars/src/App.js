@@ -1,86 +1,34 @@
-import React, { Component } from 'react';
-import styled               from 'styled-components';
+import React, {useState, useEffect} from 'react';
+import Loader from 'react-loader-spinner'
 
-import './App.css';
-import CharacterContainer   from './components/CharacterContainer';
-import Pagination           from './components/Pagination';
+import Navigation from './display/navigation/Navigation';
 
-const Button = styled.div`
-  margin: 1rem;
-  font-size: 2rem;
-  padding: 10px 20px;
-  color: #222222;
-  background-color: #ffd700;
-  width: 13%;
-  margin: 0 auto;
-  border-radius: 1rem;
-  cursor: pointer;
-`;
+import {LoaderContainer, Background} from './styles/container';
+import {useAxios} from './hooks/useAxios';
+import MainContent from './views/MainContent';
 
-class App extends Component {
-  constructor () {
-    super();
-    this.state = {
-      starwarsChars : [],
-      starwarsMovies: [],
-      toggleMovies  : false,
-      nextCharPage  : '',
-      prevCharPage  : '',
-    };
-  }
+const App = () => {
+  const [data, errors, loading] = useAxios('https://swapi.co/api/people/');
+  const [isLoading, setIsLoading] = useState('true');
+  console.log(data);
 
-  componentDidMount () {
-    this.getCharacters('https://swapi.co/api/people/');
-    this.getMovies(`https://swapi.co/api/films/`);
-  }
+  useEffect(()=> {
+    setIsLoading(loading);
+  },[loading]);
 
-  onHandleToggle = () => this.setState({ toggleMovies: !this.state.toggleMovies });
-
-  getCharacters = URL => {
-    // feel free to research what this code is doing.
-    // At a high level we are calling an API to fetch some starwars data from the open web.
-    // We then take that data and resolve it our state.
-    fetch(URL)
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        this.setState({ starwarsChars: data.results, nextCharPage: data.next, prevCharPage: data.previous });
-      })
-      .catch(err => {
-        throw new Error(err);
-      });
-  };
-
-  getMovies = URL => {
-    fetch(URL)
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        this.setState({ starwarsMovies: data.results });
-      })
-      .catch(err => {
-        throw new Error(err);
-      });
-  };
-
-  render () {
-    console.table(this.state.starwarsChars);
-
+  if (isLoading || data === []) {
     return (
-      <div className="App">
-        <h1 className="Header">React Wars</h1>
-        <Button className={ 'button' } onClick={ this.onHandleToggle }>
-          Movies { this.state.toggleMovies ? `On` : `Off` }
-        </Button>
-        <CharacterContainer characters={ this.state.starwarsChars } movies={ this.state.starwarsMovies }
-                            showMovies={ this.state.toggleMovies }/>
-        <Pagination nextPage={ this.state.nextCharPage } prevPage={ this.state.prevCharPage }
-                    getCharacters={ this.getCharacters }/>
-      </div>
-    );
+      <LoaderContainer>
+        <Loader width={500} height={500} type='TailSpin' color="#EEDB00" />
+      </LoaderContainer>
+    )
   }
-}
+  return (
+    <Background>
+    <Navigation characters={data}/>
+    <MainContent characters={data}/>
+    </Background>
+  )
+};
 
 export default App;
