@@ -35,6 +35,7 @@ Props is the vehicle that delivers the date from the 'WareHouse' to the child co
 - [x] What are side effects, and how do you sync effects in a React component to state or prop changes?
 Side Effects are what the Lifecycle methods were on React Classes.  With side effects, you can do what the lifecycle methods used to do, but have greater control over them.  For instance, you can define a _useEffect_ hook and have it listen to a piece of state by supplying it to a dependency array.  That way the effect will only fire when that piece of state is updated.
 
+
 ## Project Set Up
 
 Follow these steps to set up and work on your project:
@@ -56,11 +57,9 @@ Follow these steps for completing your project:
 - [x] Add your Project Manager as a Reviewer on the Pull-request.
 - [x] PM then will count the HW as done by  merging the branch back into master.
 
-
 ## Minimum Viable Product
 
 Your finished project must include all of the following requirements:
-
 - [x] Fetch a list of Star Wars characters from the [Star Wars API (or SWAPI)](https://swapi.co/) and render them to the screen. 
 - [x] Follow the documentation to learn how to fetch a list of "people". However, don't spend _too_ long on this. Here is a link for you to follow if you've looked around the docs for about 15 minutes or so and haven't found where to go - [Secret Link to Awesomeness 🤫](https://swapi.co/documentation#people)
 - [x] Set the data you fetch to state
